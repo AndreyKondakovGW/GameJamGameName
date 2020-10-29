@@ -14,7 +14,10 @@ public class SpawnPlace : MonoBehaviour
             if (CheckProbabilty(item.Count_Spawn_Probability()))
             {
                 GameObject newobj = item.Spawn();
-                newobj.transform.position = transform.position;
+                
+                Vector3 pos = this.transform.position;
+                newobj.transform.position = pos;
+                newobj.transform.SetParent(this.transform);
                 break;
             }
         }
@@ -23,6 +26,6 @@ public class SpawnPlace : MonoBehaviour
     private bool CheckProbabilty(float p)
     {
         double r = Random.Range(0.0f,1.0f);
-        return r > p;
+        return r < p;
     }
 }
