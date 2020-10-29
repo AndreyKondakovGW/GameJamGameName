@@ -6,6 +6,7 @@ TagManager:
   tags:
   - RoomControler
   - Room
+  - UIController
   layers:
   - Default
   - TransparentFX
