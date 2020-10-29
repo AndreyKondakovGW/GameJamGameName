@@ -63,6 +63,9 @@ public class RoomSectionControler : MonoBehaviour
             if (ConnectRoom(newRoom, pos))
             {
                 newRoom.transform.position = new Vector3(pos.x - 5, pos.y - 5 , 0) * 10;
+                
+                newRoom.activateRoom();
+
                 RoomsFiled[pos.x, pos.y] = newRoom;
                 return;
             } 

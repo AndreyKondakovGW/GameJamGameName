@@ -2,19 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterSpawn : MonoBehaviour
+public class SpawnPlace : MonoBehaviour
 {
-    public int CurntLevel;
+    public SpawnItem[] SpawningVariants;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Spawn()
     {
-        
+        Debug.Log("Try to Spawn");
+        foreach (var item in SpawningVariants)
+        {
+            if (CheckProbabilty(item.Count_Spawn_Probability()))
+            {
+                GameObject newobj = item.Spawn();
+                newobj.transform.position = transform.position;
+                break;
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private bool CheckProbabilty(float p)
     {
-        
+        double r = Random.Range(0.0f,1.0f);
+        return r > p;
     }
 }

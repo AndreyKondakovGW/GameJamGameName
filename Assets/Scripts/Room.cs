@@ -9,6 +9,16 @@ public class Room : MonoBehaviour
     public GameObject Door_R;
     public GameObject Door_L;
 
+    public SpawnPlace[] Spawns;
+
+    public void activateRoom()
+    {
+        foreach (var s in Spawns)
+        {
+            s.Spawn();
+        }
+    }
+
     public void RotateRandomly()
     {
         int c = Random.Range(0,4);
