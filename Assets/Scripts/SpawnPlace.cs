@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterSpawn : MonoBehaviour
 {
-    public int CurntLevel
+    public int CurntLevel;
 
     // Start is called before the first frame update
     void Start()
