@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
     public float Agility;
     public float Damage;
 
-    //public UIHealthBar HB;
+    public UIHealthBar HB;
     void Start()
     {
         
@@ -21,7 +21,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //HB.UpdateHP(HP);
-        //HB.UpdateMaxHP(maxHP, HP);
+        HB.UpdateHP(HP);
+        HB.UpdateMaxHP(maxHP, HP);
     }
 }
