@@ -90,7 +90,7 @@ public class Humanoid : Enemy
     {
         if (isChasing)
         {
-            Debug.Log("CHASING" + movementDirection);
+            Debug.Log("CHASING" + chasing.transform.position + " " + chasing.name);
             movementDirection = (chasing.transform.position - transform.position).normalized;
             if (movementDirection != Vector2.zero)
             {
@@ -107,7 +107,7 @@ public class Humanoid : Enemy
                 isOnWayHome = false;
                 return;
             }
-            movementDirection = diff.normalized;
+            movementDirection = diff.normalized/2;
             if (movementDirection != Vector2.zero)
             {
                 animator.SetFloat("Horizontal", movementDirection.x);
@@ -137,6 +137,7 @@ public class Humanoid : Enemy
         isChasing = false;
         chasing = null;
         CancelInvoke();
+        isOnWayHome = true;
     }
 
     void ArrivedHome()

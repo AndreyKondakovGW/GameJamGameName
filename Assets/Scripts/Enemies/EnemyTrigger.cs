@@ -38,7 +38,10 @@ public class EnemyTrigger : MonoBehaviour
     {
         if (!IsOuter)
         {
-            enemy.OnStayReactionRange(collision.gameObject);
+            if (collision.name == "player")
+            {
+                enemy.OnStayReactionRange(collision.gameObject);
+            }
         }
     }
 
