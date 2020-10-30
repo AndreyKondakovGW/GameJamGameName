@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3419576139925691137}
   - component: {fileID: 1942759389996203308}
+  - component: {fileID: -8017254010527071493}
   m_Layer: 0
   m_Name: DummyArt1
   m_TagString: Untagged
@@ -49,5 +50,20 @@ MonoBehaviour:
   Name: "\u0427\u0442\u043E \u0442\u043E "
   Description: "\u0427\u0442\u043E \u0442\u043E \u043D\u0435 \u043F\u043E\u043D\u044F\u0442\u043D\u043E\u0435
     \u0438 \u043D\u0435 \u043F\u043E\u0434\u0434\u0430\u044E\u0449\u0435\u0435\u0441\u044F
-    \u043E\u0431\u044A\u044F\u0441\u043D\u0435\u043D\u0438\u044E"
+    \u043E\u0431\u044A\u044F\u0441\u043D\u0435\u043D\u0438\u044E.\n\u042D\u0444\u0444\u0435\u043A\u0442:
+    \u041F\u043E\u0432\u044B\u0448\u0430\u0435\u0442 \u0425\u043F \u043D\u0430 20."
+  efect: {fileID: -8017254010527071493}
   Image: {fileID: 21300000, guid: 22a991cbe41602e40b0b98a349aaa2d6, type: 3}
+--- !u!114 &-8017254010527071493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8996322425317058259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4acbf1ef6a547468374a576d89c627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delta: 20

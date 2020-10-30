@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int HP;
-    public int maxHP;
+    public float HP;
+    public float maxHP;
 
-    public UIHealthBar HB;
+    public float Srength;
+    public float Endurance;
+    public float Agility;
+    public float Damage;
+
+    //public UIHealthBar HB;
     void Start()
     {
         
@@ -16,7 +21,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HB.UpdateHP(HP);
-        HB.UpdateMaxHP(maxHP, HP);
+        //HB.UpdateHP(HP);
+        //HB.UpdateMaxHP(maxHP, HP);
     }
 }

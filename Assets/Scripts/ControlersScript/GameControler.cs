@@ -37,8 +37,11 @@ public class GameControler : MonoBehaviour
 
     public Artifact GrnerateArtifact()
     {
-        foreach(var a in GlobalArtifactList)
+        int length = GlobalArtifactList.Length;
+
+        while (length-- >0)
         {
+            var a = GlobalArtifactList[Random.Range(0, GlobalArtifactList.Length)];
             float p = a.Count_Spawn_Probability();
             double r = Random.Range(0.0f,1.0f);
             if (r < p)

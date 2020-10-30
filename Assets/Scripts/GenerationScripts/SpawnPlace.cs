@@ -8,17 +8,16 @@ public class SpawnPlace : MonoBehaviour
 
     public void Spawn()
     {
-        foreach (var item in SpawningVariants)
+        int length = SpawningVariants.Length;
+        while (length -- > 0)
         {
-            if (CheckProbabilty(item.Count_Spawn_Probability()))
-            {
-                GameObject newobj = item.Spawn();
+            var item = SpawningVariants[Random.Range(0, SpawningVariants.Length)];
+            GameObject newobj = item.Spawn();
                 
-                Vector3 pos = this.transform.position;
-                newobj.transform.position = pos;
-                newobj.transform.SetParent(this.transform);
-                break;
-            }
+            Vector3 pos = this.transform.position;
+            newobj.transform.position = pos;
+            newobj.transform.SetParent(this.transform);
+            break;
         }
     }
 

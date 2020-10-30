@@ -15,6 +15,7 @@ public class TreasureScript : MonoBehaviour
     {
         var inventary = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Inventory>();
         inventary.AddArtifact(Art);
+        Art.efect.Use();
         //GameObject.FindGameObjectsWithTag("UIController")[0].GetComponent<UIControler>().ShowMesage("Вы подобрали сокровище");
     }
 
@@ -26,7 +27,7 @@ public class TreasureScript : MonoBehaviour
             if (Art)
             {
                 UIControler UIController = GameObject.FindGameObjectsWithTag("UIController")[0].GetComponent<UIControler>();
-                UIController.ShowDialogMessage("Вы нашли Сокровище", "Это сокровище совсем бесполезно", PickUp);
+                UIController.ShowDialogMessage(Art.Name, Art.Description + "\n Хотите Подобрать?", PickUp);
             }
             else
             {

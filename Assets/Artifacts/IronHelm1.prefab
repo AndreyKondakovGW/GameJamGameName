@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2349074753553245183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7086377483481549312}
+  - component: {fileID: 5472850096625865840}
+  - component: {fileID: 4802394745044759629}
+  m_Layer: 0
+  m_Name: IronHelm1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7086377483481549312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2349074753553245183}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.0173863, y: -0.9341191, z: -2.0697987}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5472850096625865840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2349074753553245183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5f886f6c0dcc4687be220fd030e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 5
+  max_Probability: 0.75
+  Object: {fileID: 0}
+  Name: "\u0416\u0435\u043B\u0435\u0437\u043D\u044B\u0439\u0428\u043B\u0435\u043C(\u0423\u0440.1)"
+  Description: "\u042D\u0444\u0444\u0435\u043A\u0442 : +10 \u0445\u043F"
+  efect: {fileID: 4802394745044759629}
+  Image: {fileID: 21300000, guid: 301c0970dce3fc444909d3a2dfc7a500, type: 3}
+--- !u!114 &4802394745044759629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2349074753553245183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4acbf1ef6a547468374a576d89c627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delta: 10
+  is_procentag: 0

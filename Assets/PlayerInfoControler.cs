@@ -1,9 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInfoControler : MonoBehaviour
 {
+    public Text HP;
+    public Text Srength;
+    public Text Endurance;
+    public Text Agility;
+    public Text Damage;
+
     public int curr_Inventory_page = 1;
     public int page_size = 3;
 
@@ -12,6 +19,8 @@ public class PlayerInfoControler : MonoBehaviour
     public ItemInfoControler[] InventoryСontent;
 
     public GameObject InvrntoryPanel;
+
+    public GameObject StatPanel;
     private bool is_active = false;
 
     void Start()
@@ -26,15 +35,28 @@ public class PlayerInfoControler : MonoBehaviour
             if (is_active)
             {
                 InvrntoryPanel.SetActive(false);
+                StatPanel.SetActive(false);
                 is_active = false;
             }
             else
             {
                 InvrntoryPanel.SetActive(true);
+                StatPanel.SetActive(false);
                 is_active = true;
                 InitAllData();
             }
         }
+    }
+
+    public void ShowStats()
+    {
+        InvrntoryPanel.SetActive(false);
+        StatPanel.SetActive(true);
+    }
+    public void ShowInventar()
+    {
+        InvrntoryPanel.SetActive(true);
+        StatPanel.SetActive(false);
     }
 
     public void InitAllData()
@@ -53,6 +75,13 @@ public class PlayerInfoControler : MonoBehaviour
                 }
                 
             }
+
+            PlayerStats ps = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerStats>();
+            HP.text = "HP :" + ps.maxHP.ToString();
+            Srength.text ="Сила :" + ps.Srength.ToString();
+            Endurance.text ="Выносливость :" + ps.Endurance.ToString();
+            Agility.text ="Ловкость :" + ps.Agility.ToString();
+            Damage.text ="Урон :" + ps.Damage.ToString();
        
     }
 
