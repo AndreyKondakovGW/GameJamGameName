@@ -226,16 +226,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1150916895103094382, guid: b547daf4695052b49aade1ba202fa034,
+    - target: {fileID: 1771700821617338870, guid: b547daf4695052b49aade1ba202fa034,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 599c9ac3f4a40964aa046a97697817fe, type: 2}
-    - target: {fileID: 2352360082105980411, guid: b547daf4695052b49aade1ba202fa034,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 599c9ac3f4a40964aa046a97697817fe, type: 2}
+      propertyPath: m_TagString
+      value: Walls
+      objectReference: {fileID: 0}
     - target: {fileID: 3011322224368189466, guid: b547daf4695052b49aade1ba202fa034,
         type: 3}
       propertyPath: m_Name
