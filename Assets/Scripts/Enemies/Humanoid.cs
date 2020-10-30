@@ -45,7 +45,7 @@ public class Humanoid : Enemy
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
@@ -107,7 +107,7 @@ public class Humanoid : Enemy
                 isOnWayHome = false;
                 return;
             }
-            movementDirection = diff.normalized/2;
+            movementDirection = diff.normalized / 2;
             if (movementDirection != Vector2.zero)
             {
                 animator.SetFloat("Horizontal", movementDirection.x);
@@ -121,12 +121,18 @@ public class Humanoid : Enemy
         }
     }
 
+    bool SeesObstacle()
+    {
+        RaycastHit2D[] result = Physics2D.LinecastAll(chasing.transform.position, transform.position);
+        return result.Any(x => x.transform.tag == "Walls");
+    }
+    
+
     void ObstacleCheck()
     {
         Debug.Log("OBSTACLE CHECK " + isChasing);
-        RaycastHit2D[] result = Physics2D.LinecastAll(chasing.transform.position, transform.position);
-        if (result.Any(x => x.transform.tag == "Walls"))
-        {
+        if (!SeesObstacle())
+        { 
             Debug.Log("WALL " + isChasing);
             GiveUpChasing();
         }
@@ -137,6 +143,13 @@ public class Humanoid : Enemy
         isChasing = false;
         chasing = null;
         CancelInvoke();
+        movementDirection = Vector2.zero;
+        animator.SetFloat("Speed", 0.0f);
+        Invoke("GoHome", 3.0f);
+    }
+
+    void GoHome()
+    {
         isOnWayHome = true;
     }
 
@@ -166,8 +179,14 @@ public class Humanoid : Enemy
     public override void OnEnterReactionRange(GameObject player)
     {
         Debug.Log("entered reaction");
+        StartChasing(player);
+    }
+
+    void StartChasing(GameObject player)
+    {
         isChasing = true;
         chasing = player;
+        isOnWayHome = false;
         InvokeRepeating("ObstacleCheck", 0.0f, 0.5f);
     }
 
@@ -175,9 +194,7 @@ public class Humanoid : Enemy
     {
         if (!isChasing)
         {
-            isChasing = true;
-            chasing = player;
-            InvokeRepeating("ObstacleCheck", 0.0f, 0.5f);
+            StartChasing(player);
         }
     }
 

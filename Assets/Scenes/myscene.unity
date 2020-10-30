@@ -1998,8 +1998,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80eedd4dc046a6b418663a9e1dc2beb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
-  maxHP: 10
+  HP: 100
+  maxHP: 100
   HB: {fileID: 2042291238}
 --- !u!1 &1972951790
 GameObject:
