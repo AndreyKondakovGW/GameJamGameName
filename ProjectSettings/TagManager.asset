@@ -6,7 +6,6 @@ TagManager:
   tags:
   - RoomControler
   - Room
-  - player
   layers:
   - Default
   - TransparentFX
