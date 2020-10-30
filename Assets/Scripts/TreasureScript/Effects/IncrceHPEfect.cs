@@ -12,10 +12,12 @@ public class IncrceHPEfect : Efect
         if (is_procentag)
         {
             GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerStats>().maxHP *= (1 + delta / 100);
+            GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerStats>().HP *= (1 + delta / 100);
         }
         else
         {
             GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerStats>().maxHP += delta;
+            GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerStats>().HP += delta;
         }
     }
 }
