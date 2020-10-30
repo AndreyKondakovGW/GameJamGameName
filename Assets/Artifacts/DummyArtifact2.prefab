@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8898175254674712926
+--- !u!1 &8803637496095468010
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2814263281749810111}
-  - component: {fileID: 8795856135988676540}
+  - component: {fileID: 5598147699151206630}
+  - component: {fileID: 886706379614606747}
   m_Layer: 0
-  m_Name: Artifact1
+  m_Name: DummyArtifact2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2814263281749810111
+--- !u!4 &5598147699151206630
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8898175254674712926}
+  m_GameObject: {fileID: 8803637496095468010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.2380378, y: -2.524393, z: -4.4804688}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8795856135988676540
+--- !u!114 &886706379614606747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8898175254674712926}
+  m_GameObject: {fileID: 8803637496095468010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4558b1048c6eedf40b39c97f0fd83f18, type: 3}
+  m_Script: {fileID: 11500000, guid: c5e5f886f6c0dcc4687be220fd030e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level: 2
   max_Probability: 0.75
-  Object: {fileID: 2222225144742535168, guid: 48a4ab0fb6e814c4fbb2bc2fda1f8870, type: 3}
+  Object: {fileID: 0}
+  Name: "\u0413\u043E\u043B\u043E\u0432\u0430 \u0441\u043A\u0435\u043B\u0435\u0442\u0430"
+  Description: "\u0410\u0431\u0441\u043E\u043B\u044E\u0442\u043D\u043E \u0431\u0435\u0441\u043F\u043E\u043B\u0435\u0437\u043D\u0430\u044F
+    \u0433\u043E\u043B\u043E\u0432\u0430 \u0441\u043A\u0435\u043B\u0435\u0442\u0430"
+  Image: {fileID: 21300000, guid: 25a9e9e51b6e12241a68beb3826bb5c7, type: 3}

@@ -22,9 +22,9 @@ public class PauseMenueControler : MonoBehaviour
             { 
                 Resume();
             }else
-                Paused();;
-            }
-        }   
+                Paused();
+        }
+    }   
 
     public void Paused()
     {

@@ -14,7 +14,7 @@ public class SpawnItem : MonoBehaviour
     public float Count_Spawn_Probability()
     {
         int global_lvl = GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameControler>().curent_level;
-        return Math.Min((0.75f - Math.Abs(global_lvl - level) * 0.75f), max_Probability);    
+        return Math.Min((0.75f - 0.75f * (Math.Abs(global_lvl - level) / (100f))), max_Probability);    
     }
 
     public GameObject Spawn()

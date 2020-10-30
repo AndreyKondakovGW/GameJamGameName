@@ -5,9 +5,12 @@ using UnityEngine;
 public class GameControler : MonoBehaviour
 {
     public int curent_level = 1;
+    public float speedfinemodifiee = 0.9f;
     public GameObject RoomControler;
     public UIControler UIController;
     public GameObject Player;
+
+    public Artifact[] GlobalArtifactList; 
     
 
     // Start is called before the first frame update
@@ -32,9 +35,23 @@ public class GameControler : MonoBehaviour
         UIController.ShowMesage("Вы перешли на уровень" + curent_level);
     }
 
-    // Update is called once per frame
-    void Update()
+    public Artifact GrnerateArtifact()
     {
-        
+        foreach(var a in GlobalArtifactList)
+        {
+            float p = a.Count_Spawn_Probability();
+            double r = Random.Range(0.0f,1.0f);
+            if (r < p)
+            {
+                return a;
+            }
+        }
+        return null;
+    }
+
+    public void DecrecePalyerSpeed()
+    {
+        Player.GetComponent<CharacterTestScript>().moveSpeed = Player.GetComponent<CharacterTestScript>().moveSpeed * speedfinemodifiee;
+        UIController.ShowMesage("Сокровища отягощают вас!");
     }
 }

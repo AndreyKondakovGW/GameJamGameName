@@ -8,7 +8,6 @@ public class SpawnPlace : MonoBehaviour
 
     public void Spawn()
     {
-        ///
         foreach (var item in SpawningVariants)
         {
             if (CheckProbabilty(item.Count_Spawn_Probability()))

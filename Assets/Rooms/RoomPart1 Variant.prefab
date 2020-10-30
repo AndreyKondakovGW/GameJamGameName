@@ -71,7 +71,7 @@ PrefabInstance:
         type: 3}
       propertyPath: SpawningVariants.Array.data[0]
       value: 
-      objectReference: {fileID: 6026982265898214147, guid: 452500af95fee504da0097c757f2a94a,
+      objectReference: {fileID: 8795856135988676540, guid: 452500af95fee504da0097c757f2a94a,
         type: 3}
     - target: {fileID: 229635571700501106, guid: 518ff31e4a7b37443860141b0b7cbae8,
         type: 3}
