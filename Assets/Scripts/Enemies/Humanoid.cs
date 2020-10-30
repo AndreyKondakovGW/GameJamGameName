@@ -124,14 +124,19 @@ public class Humanoid : Enemy
     bool SeesObstacle()
     {
         RaycastHit2D[] result = Physics2D.LinecastAll(chasing.transform.position, transform.position);
+        if (result.Any(x => x.transform.tag == "Walls"))
+        {
+            Debug.Log(result.FirstOrDefault(x => x.transform.tag == "Walls").transform.name);
+        }
+        
         return result.Any(x => x.transform.tag == "Walls");
     }
     
 
     void ObstacleCheck()
     {
-        Debug.Log("OBSTACLE CHECK " + isChasing);
-        if (!SeesObstacle())
+        Debug.Log("OBSTACLE CHECK " + isChasing + " " + chasing.transform.position);
+        if (SeesObstacle())
         { 
             Debug.Log("WALL " + isChasing);
             GiveUpChasing();
@@ -141,7 +146,6 @@ public class Humanoid : Enemy
     void GiveUpChasing()
     {
         isChasing = false;
-        chasing = null;
         CancelInvoke();
         movementDirection = Vector2.zero;
         animator.SetFloat("Speed", 0.0f);
@@ -171,6 +175,13 @@ public class Humanoid : Enemy
 
     }
 
+    void StartChasing(GameObject player)
+    {
+        isChasing = true;
+        isOnWayHome = false;
+        InvokeRepeating("ObstacleCheck", 0.0f, 0.5f);
+    }
+
     public override void OnEnterWarningRange(GameObject player)
     {
         Debug.Log("entered warning");
@@ -179,20 +190,17 @@ public class Humanoid : Enemy
     public override void OnEnterReactionRange(GameObject player)
     {
         Debug.Log("entered reaction");
-        StartChasing(player);
-    }
-
-    void StartChasing(GameObject player)
-    {
-        isChasing = true;
         chasing = player;
-        isOnWayHome = false;
-        InvokeRepeating("ObstacleCheck", 0.0f, 0.5f);
+        if (!SeesObstacle())
+        {
+            Debug.Log("start chasing");
+            StartChasing(player);
+        }
     }
 
     public override void OnStayReactionRange(GameObject player)
     {
-        if (!isChasing)
+        if (!isChasing && !SeesObstacle())
         {
             StartChasing(player);
         }
