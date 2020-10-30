@@ -157,6 +157,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1771700821617338870, guid: b547daf4695052b49aade1ba202fa034,
+        type: 3}
+      propertyPath: m_TagString
+      value: Walls
+      objectReference: {fileID: 0}
     - target: {fileID: 3011322224368189466, guid: b547daf4695052b49aade1ba202fa034,
         type: 3}
       propertyPath: m_Name
@@ -166,6 +171,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3011322224368189466, guid: b547daf4695052b49aade1ba202fa034,
+        type: 3}
+      propertyPath: m_TagString
+      value: Room
       objectReference: {fileID: 0}
     - target: {fileID: 3011322224368189469, guid: b547daf4695052b49aade1ba202fa034,
         type: 3}
