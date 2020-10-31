@@ -17,6 +17,9 @@ public class Humanoid : Enemy
 
     AttackDirection playerDirection;
 
+    Shader shaderGUItext;
+    Shader shaderSpritesDefault;
+
     GameObject chasing;
     Transform homePoint;
     MiniHPBar miniHPBar;
@@ -49,6 +52,8 @@ public class Humanoid : Enemy
         homePoint = gameObject.transform.Find("home_point");
         Debug.Log(homePoint.name);
         homePoint.parent = null;
+        shaderGUItext = Shader.Find("GUI/Text Shader");
+        shaderSpritesDefault = Shader.Find("Sprites/Default");
     }
 
     // Update is called once per frame
@@ -170,9 +175,7 @@ public class Humanoid : Enemy
     {
         if (chasing != null && playerDirection == direction)
         {
-            chasing.GetComponent<Rigidbody2D>().velocity = (chasing.transform.position - transform.position) * 10;
-            PlayerStats st = chasing.GetComponent<PlayerStats>();
-            st.HP = st.HP - damage;
+            chasing.GetComponent<PlayerController>().OnHit(this, damage);
         }
     }
 
@@ -205,10 +208,17 @@ public class Humanoid : Enemy
 
     }
 
+    void RestoreShader()
+    {
+        sr.material.shader = shaderSpritesDefault;
+    }
+
     public override void OnHit(GameObject player, float Damage)
     {
         health -= Damage;
         miniHPBar.UpdateHPByRatio(health/maxHealth);
+        sr.material.shader = shaderGUItext;
+        Invoke("RestoreShader", 0.2f);
         if (health <= 0)
         {
             isDead = true;
