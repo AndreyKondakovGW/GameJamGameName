@@ -7,14 +7,15 @@ using UnityEngine;
 public class SpawnItem : MonoBehaviour
 {
     public int level = 1;
-    public double max_Probability = 0.75;
+    public float max_Probability = 0.75f;
+    public float defalt_Probability = 0.5f;
 
     public GameObject Object;
 
-    public double Count_Spawn_Probability()
+    public float Count_Spawn_Probability()
     {
         int global_lvl = GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameControler>().curent_level;
-        return Math.Min((0.75 - Math.Abs(global_lvl - level) * 0.75), max_Probability);    
+        return Math.Min((defalt_Probability - defalt_Probability * (Math.Abs(global_lvl - level) / (10f))), max_Probability);    
     }
 
     public GameObject Spawn()

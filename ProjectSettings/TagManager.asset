@@ -6,6 +6,10 @@ TagManager:
   tags:
   - RoomControler
   - Room
+  - Walls
+  - Enemy
+  - UIController
+  - PlayerLight
   layers:
   - Default
   - TransparentFX

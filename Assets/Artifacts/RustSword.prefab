@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7073959635571512837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3516084065155987768}
+  - component: {fileID: 3754081580066346230}
+  - component: {fileID: 8073214256688232407}
+  m_Layer: 0
+  m_Name: RustSword
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3516084065155987768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073959635571512837}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.0173863, y: -0.9341191, z: -2.0697987}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3754081580066346230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073959635571512837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5f886f6c0dcc4687be220fd030e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 4
+  max_Probability: 0.75
+  defalt_Probability: 0.5
+  Object: {fileID: 0}
+  Name: "\u0420\u0436\u0430\u0432\u044B\u0439 \u041C\u0435\u0447"
+  Description: "\u042D\u0444\u0444\u0435\u043A\u0442 + 5 \u0443\u0440\u043E\u043D\u0430"
+  efect:
+  - {fileID: 8073214256688232407}
+  Image: {fileID: 21300000, guid: fa0fce7b59ef64843844a16fc0b32cff, type: 3}
+--- !u!114 &8073214256688232407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073959635571512837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8207256f78c34c34abe374bc87528498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delta: 5
+  is_procentag: 0

@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &741040753844751175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 741040753844751195}
+  - component: {fileID: 741040753844751194}
+  - component: {fileID: 741040753844751173}
+  - component: {fileID: 741040753844751172}
+  m_Layer: 0
+  m_Name: IronFist
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &741040753844751195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741040753844751175}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.7974865, y: -1.9385054, z: -181.66173}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &741040753844751194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741040753844751175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5f886f6c0dcc4687be220fd030e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 10
+  max_Probability: 0.75
+  defalt_Probability: 0.5
+  Object: {fileID: 0}
+  Name: "\u0416\u0435\u043B\u0435\u0437\u043D\u044B\u0439 \u043A\u0443\u043B\u0430\u043A"
+  Description: "\u042D\u0444\u0444\u0435\u043A\u0442 \u0434\u0430\u0451\u0442 +10\u0445\u043F
+    \u0438 +10 \u0441\u0438\u043B\u044B"
+  efect:
+  - {fileID: 741040753844751173}
+  - {fileID: 741040753844751172}
+  Image: {fileID: 21300000, guid: 2753e04828db2454f8bda9a592920457, type: 3}
+--- !u!114 &741040753844751173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741040753844751175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4acbf1ef6a547468374a576d89c627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delta: 10
+  is_procentag: 0
+--- !u!114 &741040753844751172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741040753844751175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610673504c7a2c44c80707a032b5885c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delta: 10
+  is_procentag: 0
