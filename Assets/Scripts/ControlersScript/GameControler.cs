@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameControler : MonoBehaviour
 {
@@ -9,13 +10,18 @@ public class GameControler : MonoBehaviour
     public GameObject RoomControler;
     public UIControler UIController;
     public GameObject Player;
+    
 
     public Artifact[] GlobalArtifactList; 
     
 
+    //efect
+    public bool Clairvoyance = false;
+
     // Start is called before the first frame update
     void Start()
     {   
+       Time.timeScale = 1f;
        RoomControler = GameObject.FindGameObjectsWithTag("RoomControler")[0];
        UIController = GameObject.FindGameObjectsWithTag("UIController")[0].GetComponent<UIControler>();
        Player = GameObject.FindGameObjectsWithTag("Player")[0];
@@ -33,6 +39,14 @@ public class GameControler : MonoBehaviour
         }
         RoomControler.GetComponent<RoomSectionControler>().CreateSection();
         UIController.ShowMesage("Вы перешли на уровень" + curent_level);
+        if (Clairvoyance)
+        {
+            foreach (var en in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                en.transform.Find("Area Light").gameObject.GetComponent<Light>().intensity = 1;
+            }
+        }
+
     }
 
     public Artifact GrnerateArtifact()
@@ -54,7 +68,16 @@ public class GameControler : MonoBehaviour
 
     public void DecrecePalyerSpeed()
     {
-        Player.GetComponent<CharacterTestScript>().moveSpeed = Player.GetComponent<CharacterTestScript>().moveSpeed * speedfinemodifiee;
+        Player.GetComponent<PlayerController>().movementSpeed = Player.GetComponent<PlayerController>().movementSpeed * speedfinemodifiee;
         UIController.ShowMesage("Сокровища отягощают вас!");
+    }
+
+    public IEnumerator EndGame()
+    {
+        UIController.ShowMesage("Вы Умерли", 5);
+        Time.timeScale = 0f;
+        yield return new  WaitForSecondsRealtime(5);
+        SceneManager.LoadScene("MainMenu");
+        
     }
 }

@@ -1197,6 +1197,7 @@ MonoBehaviour:
   Door_R: {fileID: 7364158146443151140}
   Door_L: {fileID: 5762004624223886479}
   Spawns: []
+  rotatable: 0
 --- !u!1 &6339847675650402561
 GameObject:
   m_ObjectHideFlags: 0

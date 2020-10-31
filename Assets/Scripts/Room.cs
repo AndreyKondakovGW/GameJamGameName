@@ -11,6 +11,8 @@ public class Room : MonoBehaviour
 
     public SpawnPlace[] Spawns;
 
+    public bool rotatable = true;
+
     public void activateRoom()
     {
         foreach (var s in Spawns)

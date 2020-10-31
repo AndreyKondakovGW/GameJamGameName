@@ -20,7 +20,7 @@ public class UIHealthBar : MonoBehaviour
     float _lastMaxHP = 0f;
 
 
-    int numberOfSegments = 1;
+    //int numberOfSegments = 1;
 
     private void Start()
     {

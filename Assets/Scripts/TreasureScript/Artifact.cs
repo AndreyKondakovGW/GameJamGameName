@@ -8,7 +8,7 @@ public class Artifact : SpawnItem
     [TextArea()]
     public string Description;
 
-    public Efect efect;
+    public Efect[] efect;
 
     public Sprite Image;
 }

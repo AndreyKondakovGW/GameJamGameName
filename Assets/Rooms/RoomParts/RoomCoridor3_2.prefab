@@ -3464,6 +3464,11 @@ PrefabInstance:
       propertyPath: Door_L
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3675020308357185479, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
+        type: 3}
+      propertyPath: rotatable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4371977497547873335, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
         type: 3}
       propertyPath: m_Tiles.Array.size

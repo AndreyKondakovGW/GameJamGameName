@@ -15,7 +15,10 @@ public class TreasureScript : MonoBehaviour
     {
         var inventary = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Inventory>();
         inventary.AddArtifact(Art);
-        Art.efect.Use();
+        foreach (var ef in Art.efect)
+        {
+            ef.Use();
+        }
         //GameObject.FindGameObjectsWithTag("UIController")[0].GetComponent<UIControler>().ShowMesage("Вы подобрали сокровище");
     }
 

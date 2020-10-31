@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -6914113154061983957}
   - component: {fileID: 3388248407818107451}
   - component: {fileID: 6695678192475532949}
+  - component: {fileID: -3683020744418768580}
   m_Layer: 0
   m_Name: Chest1
   m_TagString: Untagged
@@ -100,6 +101,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Art: {fileID: 0}
   is_played: 0
+--- !u!114 &-3683020744418768580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222225144742535168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4558b1048c6eedf40b39c97f0fd83f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 2
+  max_Probability: 0.75
+  Object: {fileID: 2222225144742535168}
 --- !u!1 &6399760018805286605
 GameObject:
   m_ObjectHideFlags: 0

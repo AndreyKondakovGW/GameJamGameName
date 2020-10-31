@@ -3094,6 +3094,11 @@ PrefabInstance:
       propertyPath: Spawns.Array.data[0]
       value: 
       objectReference: {fileID: 3155177973270799344}
+    - target: {fileID: 3675020308357185479, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
+        type: 3}
+      propertyPath: rotatable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4016849797547080969, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
         type: 3}
       propertyPath: m_IsActive

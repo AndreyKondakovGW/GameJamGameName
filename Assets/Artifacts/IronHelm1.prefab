@@ -46,10 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 5
   max_Probability: 0.75
+  defalt_Probability: 0.5
   Object: {fileID: 0}
   Name: "\u0416\u0435\u043B\u0435\u0437\u043D\u044B\u0439\u0428\u043B\u0435\u043C(\u0423\u0440.1)"
   Description: "\u042D\u0444\u0444\u0435\u043A\u0442 : +10 \u0445\u043F"
-  efect: {fileID: 4802394745044759629}
+  efect:
+  - {fileID: 4802394745044759629}
   Image: {fileID: 21300000, guid: 301c0970dce3fc444909d3a2dfc7a500, type: 3}
 --- !u!114 &4802394745044759629
 MonoBehaviour:

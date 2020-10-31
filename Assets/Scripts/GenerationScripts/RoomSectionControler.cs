@@ -59,7 +59,10 @@ public class RoomSectionControler : MonoBehaviour
         {
             
             Vector2Int pos = vacantPlaces.ElementAt(Random.Range(0, vacantPlaces.Count));
-            newRoom.RotateRandomly();
+            if (newRoom.rotatable)
+            {
+                newRoom.RotateRandomly();
+            }
             if (ConnectRoom(newRoom, pos))
             {
                 newRoom.transform.position = new Vector3(pos.x - 5, pos.y - 5 , 0) * 10;

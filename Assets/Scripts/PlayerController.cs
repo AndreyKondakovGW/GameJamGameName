@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -102,7 +103,7 @@ public class PlayerController : MonoBehaviour
             foreach (Enemy enemy in enemiesInTriggers[(int)direction])
             {
                 //TODO: insert damage calculations
-                enemy.OnHit(gameObject, 20.0f);
+                enemy.OnHit(gameObject,playerStats.Damage * (1 + playerStats.Srength / 100));
             }
             Invoke("ReleaseAttack", attackDelay);
         }
@@ -125,7 +126,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnHit(Enemy enemy, float damage)
     {
-        playerStats.HP = playerStats.HP - damage;
+        playerStats.HP = playerStats.HP - damage * Math.Max(0.5f, 1 - playerStats.Agility / 100);
+        if (playerStats.HP < 0)
+        {
+            playerStats.HP = 0f;
+            StartCoroutine(GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameControler>().EndGame());
+        }
         sr.material.shader = shaderGUItext;
         Invoke("RestoreShader", 0.2f);
     }
