@@ -18,6 +18,7 @@ public class MiniHPBar : MonoBehaviour
     }
     public void UpdateHPByRatio(float hp)
     {
+        Debug.Log(hp);
         if (hp == 1)
         {
             Pivot.gameObject.SetActive(false);
