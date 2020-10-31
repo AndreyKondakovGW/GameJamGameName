@@ -4,7 +4,6 @@ using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Threading;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class Humanoid : Enemy

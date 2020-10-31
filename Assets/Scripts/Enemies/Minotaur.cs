@@ -4,8 +4,8 @@ using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Threading;
-using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Minotaur : Enemy
 {
@@ -359,8 +359,10 @@ public class Minotaur : Enemy
     }
     protected override void OnDeath()
     {
+        GameObject.FindGameObjectsWithTag("UIController")[0].GetComponent<UIControler>().ShowMesage("Босс Подземелья мертв. Вы победили!");
         CancelInvoke("ObstacleCheck");
         animator.SetBool("Dead", true);
+        SceneManager.LoadScene("MainMenu");
     }
 
     void StartChasing(GameObject player)
