@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
         {
             direction = AttackDirections.ClosestDirection(movementDirection);
             //Debug.Log(direction + " " + movementDirection);
+
             //animator.SetFloat("Horizontal", movementDirection.x);
             //animator.SetFloat("Vertical", movementDirection.y);
         }
