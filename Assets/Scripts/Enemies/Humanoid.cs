@@ -10,12 +10,16 @@ public class Humanoid : Enemy
     public SpriteRenderer sr;
     public Animator animator;
 
-    bool isTracked = false;
+    bool isAttacking = false;
     bool isChasing = false;
     bool isOnWayHome = false;
+    bool isDead = false;
+
+    AttackDirection playerDirection;
 
     GameObject chasing;
     Transform homePoint;
+    MiniHPBar miniHPBar;
 
     Vector2 movementDirection;
 
@@ -37,6 +41,11 @@ public class Humanoid : Enemy
             animator = transform.Find("sprite").GetComponent<Animator>();
         }
 
+        if (!miniHPBar)
+        {
+            miniHPBar = transform.Find("HPbar").GetComponent<MiniHPBar>();
+        }
+
         homePoint = gameObject.transform.Find("home_point");
         Debug.Log(homePoint.name);
         homePoint.parent = null;
@@ -50,8 +59,11 @@ public class Humanoid : Enemy
 
     private void FixedUpdate()
     {
-        UpdateAI();
-        rb.velocity = movementDirection * speed;
+        if (!isDead)
+        {
+            UpdateAI();
+            rb.velocity = movementDirection * speed;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -88,16 +100,32 @@ public class Humanoid : Enemy
 
     protected override void UpdateAI()
     {
-        if (isChasing)
+        if (isChasing && !isAttacking)
         {
-            Debug.Log("CHASING" + chasing.transform.position + " " + chasing.name);
-            movementDirection = (chasing.transform.position - transform.position).normalized;
-            if (movementDirection != Vector2.zero)
+            //Debug.Log("CHASING" + chasing.transform.position + " " + chasing.name);
+            Vector2 diff = chasing.transform.position - transform.position;
+            direction = diff.x > 0 ? AttackDirection.right : AttackDirection.left;
+            float magnitude = diff.magnitude;
+            if (magnitude < attackRange)
             {
-                animator.SetFloat("Horizontal", movementDirection.x);
-                animator.SetFloat("Vertical", movementDirection.y);
+                Debug.Log("ATTACK" + chasing.transform.position + " " + chasing.name);
+                isAttacking = true;
+                animator.SetBool("Attacking", true);
+                Invoke("AttackPlayer", attackDelay);
+                Invoke("ResetAttacking", attackDuration);
+                movementDirection = Vector2.zero;
             }
-            animator.SetFloat("Speed", movementDirection.sqrMagnitude);
+            else
+            {
+                diff = new Vector2(diff.x, diff.y * 4);
+                movementDirection = (diff).normalized;
+                if (movementDirection != Vector2.zero)
+                {
+                    animator.SetFloat("Horizontal", movementDirection.x);
+                    animator.SetFloat("Vertical", movementDirection.y);
+                }
+                animator.SetFloat("Speed", movementDirection.magnitude);
+            }
         }
         else if (isOnWayHome)
         {
@@ -131,7 +159,22 @@ public class Humanoid : Enemy
         
         return result.Any(x => x.transform.tag == "Walls");
     }
-    
+
+    void ResetAttacking()
+    {
+        isAttacking = false;
+        animator.SetBool("Attacking", false);
+    }
+
+    void AttackPlayer()
+    {
+        if (chasing != null && playerDirection == direction)
+        {
+            chasing.GetComponent<Rigidbody2D>().velocity = (chasing.transform.position - transform.position) * 10;
+            PlayerStats st = chasing.GetComponent<PlayerStats>();
+            st.HP = st.HP - damage;
+        }
+    }
 
     void ObstacleCheck()
     {
@@ -146,7 +189,7 @@ public class Humanoid : Enemy
     void GiveUpChasing()
     {
         isChasing = false;
-        CancelInvoke();
+        CancelInvoke("ObstacleCheck");
         movementDirection = Vector2.zero;
         animator.SetFloat("Speed", 0.0f);
         Invoke("GoHome", 3.0f);
@@ -162,17 +205,25 @@ public class Humanoid : Enemy
 
     }
 
-    protected override void OnHit(GameObject player)
+    public override void OnHit(GameObject player, float Damage)
     {
-
+        health -= Damage;
+        miniHPBar.UpdateHPByRatio(health/maxHealth);
+        if (health <= 0)
+        {
+            isDead = true;
+            OnDeath();
+        }
     }
+
     protected override void OnLostTrack()
     {
 
     }
     protected override void OnDeath()
     {
-
+        CancelInvoke("ObstacleCheck");
+        animator.SetBool("Dead", true);
     }
 
     void StartChasing(GameObject player)
@@ -185,7 +236,6 @@ public class Humanoid : Enemy
     public override void OnEnterWarningRange(GameObject player)
     {
         Debug.Log("entered warning");
-        isTracked = true;
     }
     public override void OnEnterReactionRange(GameObject player)
     {
@@ -209,12 +259,24 @@ public class Humanoid : Enemy
     public override void OnExitWarningRange(GameObject player)
     {
         Debug.Log("exited warning");
-        isTracked = false;
         GiveUpChasing();
     }
 
     public override void OnExitReactionRange(GameObject player)
     {
         Debug.Log("eexited reaction");
+    }
+
+    public override void OnEnterAttackTrigger(AttackDirection playerDirection)
+    {
+        this.playerDirection = playerDirection;
+    }
+
+    public override void OnExitAttackTrigger(AttackDirection playerDirection)
+    {
+        if (this.playerDirection == playerDirection)
+        {
+            this.playerDirection = AttackDirection.none;
+        }
     }
 }

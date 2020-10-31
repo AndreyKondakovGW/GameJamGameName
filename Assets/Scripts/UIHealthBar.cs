@@ -16,8 +16,8 @@ public class UIHealthBar : MonoBehaviour
     RectTransform _fullBar_right;
     RectTransform _mask;
 
-    int _lastHP = 0;
-    int _lastMaxHP = 0;
+    float _lastHP = 0;
+    float _lastMaxHP = 0;
 
 
     int numberOfSegments = 1;
@@ -33,7 +33,7 @@ public class UIHealthBar : MonoBehaviour
         _fullBar_right = _fullBar.Find("Right").GetComponent<RectTransform>(); ;
     }
 
-    public void UpdateMaxHP(int maxHP, int HP)
+    public void UpdateMaxHP(float maxHP, float HP)
     {
         if (maxHP != _lastMaxHP)
         {
@@ -91,7 +91,7 @@ public class UIHealthBar : MonoBehaviour
         }
     }
 
-    public void UpdateHP(int HP)
+    public void UpdateHP(float HP)
     {
         _mask.sizeDelta = new Vector2(HP*_HPtoScreenCoordsRatio, _mask.sizeDelta.y);
         _lastHP = HP;

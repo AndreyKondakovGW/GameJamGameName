@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int HP;
-    public int maxHP;
+    public float HP;
+    public float maxHP;
 
     public UIHealthBar HB;
     void Start()
