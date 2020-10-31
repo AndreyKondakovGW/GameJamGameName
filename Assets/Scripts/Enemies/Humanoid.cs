@@ -51,7 +51,7 @@ public class Humanoid : Enemy
         }
 
         homePoint = gameObject.transform.Find("home_point");
-        Debug.Log(homePoint.name);
+        //Debug.Log(homePoint.name);
         homePoint.parent = null;
         shaderGUItext = Shader.Find("GUI/Text Shader");
         shaderSpritesDefault = Shader.Find("Sprites/Default");

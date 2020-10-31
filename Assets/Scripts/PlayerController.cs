@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         if (movementDirection != Vector2.zero)
         {
             direction = AttackDirections.ClosestDirection(movementDirection);
-            Debug.Log(direction + " " + movementDirection);
+            //Debug.Log(direction + " " + movementDirection);
             animator.SetFloat("Horizontal", movementDirection.x);
             animator.SetFloat("Vertical", movementDirection.y);
         }
