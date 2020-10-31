@@ -2748,6 +2748,7 @@ MonoBehaviour:
   - {fileID: 8935050007074820984, guid: 041b51a03e644ca429958d652ac61c02, type: 3}
   - {fileID: 3541109278906433887, guid: cbf7cd6f22f3eea46bc870980ed54fea, type: 3}
   - {fileID: 8933122928006904478, guid: 0ac4a81b552450645bba4e2327e9588d, type: 3}
+  - {fileID: 3883981467686052253, guid: c20befa6b6646cf4f99313503f8ccc94, type: 3}
   ExitRoomPerf:
   - {fileID: 50901475472883626, guid: c344d945a5b281845bcba452b71b32fc, type: 3}
   StartingRoom: {fileID: 367076852}
@@ -3395,7 +3396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112544199}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.1, y: -2.06, z: 0}
+  m_LocalPosition: {x: -0.24, y: 0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 194003828}
@@ -5224,6 +5225,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4924832199238146093, guid: 881efacfb6e94354a84a7fe066f28c76,
         type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4924832199238146093, guid: 881efacfb6e94354a84a7fe066f28c76,
+        type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[0].Array.data[0].X
       value: 10000000
       objectReference: {fileID: 0}
@@ -6171,6 +6177,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StartingRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 7765617074231265161, guid: 881efacfb6e94354a84a7fe066f28c76,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 881efacfb6e94354a84a7fe066f28c76, type: 3}
