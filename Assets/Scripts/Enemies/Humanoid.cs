@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 
 public class Humanoid : Enemy
@@ -15,7 +16,7 @@ public class Humanoid : Enemy
     bool isOnWayHome = false;
     bool isDead = false;
 
-    AttackDirection playerDirection;
+    bool[] AttackTriggers;
 
     Shader shaderGUItext;
     Shader shaderSpritesDefault;
@@ -54,6 +55,8 @@ public class Humanoid : Enemy
         homePoint.parent = null;
         shaderGUItext = Shader.Find("GUI/Text Shader");
         shaderSpritesDefault = Shader.Find("Sprites/Default");
+
+        AttackTriggers = new bool[4];
     }
 
     // Update is called once per frame
@@ -87,19 +90,18 @@ public class Humanoid : Enemy
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.name == "player")
         {
-            sr.sortingOrder = 11;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.name == "player")
-        {
-            sr.sortingOrder = 9;
+            if (collision.transform.position.y > transform.position.y)
+            {
+                sr.sortingOrder = 11;
+            }
+            else
+            {
+                sr.sortingOrder = 9;
+            }
         }
     }
 
@@ -111,10 +113,11 @@ public class Humanoid : Enemy
             Vector2 diff = chasing.transform.position - transform.position;
             direction = diff.x > 0 ? AttackDirection.right : AttackDirection.left;
             float magnitude = diff.magnitude;
-            if (magnitude < attackRange)
+            if (magnitude < attackRange && AttackTriggers.Any(x => x))
             {
-                Debug.Log("ATTACK" + chasing.transform.position + " " + chasing.name);
+                //Debug.Log("ATTACK" + chasing.transform.position + " " + chasing.name);
                 isAttacking = true;
+                animator.SetFloat("Horizontal", (int)direction * 2 - 1);
                 animator.SetBool("Attacking", true);
                 Invoke("AttackPlayer", attackDelay);
                 Invoke("ResetAttacking", attackDuration);
@@ -157,11 +160,6 @@ public class Humanoid : Enemy
     bool SeesObstacle()
     {
         RaycastHit2D[] result = Physics2D.LinecastAll(chasing.transform.position, transform.position);
-        if (result.Any(x => x.transform.tag == "Walls"))
-        {
-            Debug.Log(result.FirstOrDefault(x => x.transform.tag == "Walls").transform.name);
-        }
-        
         return result.Any(x => x.transform.tag == "Walls");
     }
 
@@ -173,7 +171,7 @@ public class Humanoid : Enemy
 
     void AttackPlayer()
     {
-        if (chasing != null && playerDirection == direction)
+        if (chasing != null && AttackTriggers[(int)direction])
         {
             chasing.GetComponent<PlayerController>().OnHit(this, damage);
         }
@@ -181,10 +179,10 @@ public class Humanoid : Enemy
 
     void ObstacleCheck()
     {
-        Debug.Log("OBSTACLE CHECK " + isChasing + " " + chasing.transform.position);
+        //Debug.Log("OBSTACLE CHECK " + isChasing + " " + chasing.transform.position);
         if (SeesObstacle())
         { 
-            Debug.Log("WALL " + isChasing);
+            //Debug.Log("WALL " + isChasing);
             GiveUpChasing();
         }
     }
@@ -245,15 +243,15 @@ public class Humanoid : Enemy
 
     public override void OnEnterWarningRange(GameObject player)
     {
-        Debug.Log("entered warning");
+        //Debug.Log("entered warning");
     }
     public override void OnEnterReactionRange(GameObject player)
     {
-        Debug.Log("entered reaction");
+        //Debug.Log("entered reaction");
         chasing = player;
         if (!SeesObstacle())
         {
-            Debug.Log("start chasing");
+            //Debug.Log("start chasing");
             StartChasing(player);
         }
     }
@@ -268,25 +266,22 @@ public class Humanoid : Enemy
 
     public override void OnExitWarningRange(GameObject player)
     {
-        Debug.Log("exited warning");
+        //Debug.Log("exited warning");
         GiveUpChasing();
     }
 
     public override void OnExitReactionRange(GameObject player)
     {
-        Debug.Log("eexited reaction");
+        //Debug.Log("eexited reaction");
     }
 
     public override void OnEnterAttackTrigger(AttackDirection playerDirection)
     {
-        this.playerDirection = playerDirection;
+        AttackTriggers[(int)playerDirection] = true;
     }
 
     public override void OnExitAttackTrigger(AttackDirection playerDirection)
     {
-        if (this.playerDirection == playerDirection)
-        {
-            this.playerDirection = AttackDirection.none;
-        }
+        AttackTriggers[(int)playerDirection] = false;
     }
 }
