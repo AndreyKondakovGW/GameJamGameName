@@ -51,8 +51,12 @@ public class RoomSectionControler : MonoBehaviour
                 
             }
         }
-
-        Room newRoom = Instantiate(RoomPartsPerf[Random.Range(0, RoomPartsPerf.Length)]);
+        int room_num = Random.Range(0, RoomPartsPerf.Length);
+        while(RoomPartsPerf[Random.Range(0, RoomPartsPerf.Length)].CheckProbability())
+        {
+            room_num = Random.Range(0, RoomPartsPerf.Length);
+        }
+        Room newRoom = Instantiate(RoomPartsPerf[room_num]);
         int limit = 100;
 
         while (limit-- > 0)

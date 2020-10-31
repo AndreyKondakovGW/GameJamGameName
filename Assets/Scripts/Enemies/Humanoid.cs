@@ -22,7 +22,9 @@ public class Humanoid : Enemy
     bool[] AttackTriggers;
 
     Shader shaderGUItext;
-    Shader shaderSpritesDefault;
+    //Shader shaderSpritesDefault;
+
+    public Material  DefaltMatrial;
 
     GameObject chasing;
     Transform homePoint;
@@ -61,7 +63,7 @@ public class Humanoid : Enemy
         //Debug.Log(homePoint.name);
         homePoint.parent = null;
         shaderGUItext = Shader.Find("GUI/Text Shader");
-        shaderSpritesDefault = Shader.Find("Sprites/Default");
+        //shaderSpritesDefault = Shader.Find("Sprites/Default");
 
         AttackTriggers = new bool[4];
         pathfinder = new Pathfinder();
@@ -168,6 +170,7 @@ public class Humanoid : Enemy
             if (currentNode == null)
             {
                 ArrivedHome();
+                return;
             }
             Vector2 diff = new Vector2(currentNode.Value.pos.x - transform.position.x, currentNode.Value.pos.y - transform.position.y);
             if (diff.sqrMagnitude < 0.1)
@@ -284,7 +287,7 @@ public class Humanoid : Enemy
 
     void RestoreShader()
     {
-        sr.material.shader = shaderSpritesDefault;
+        sr.material = DefaltMatrial;
     }
 
     public override void OnHit(GameObject player, float Damage)

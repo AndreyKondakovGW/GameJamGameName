@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public Sprite Right;
     public Sprite Left;
     public Sprite Back;
+    
+    public Material  DefaltMatrial;
 
     public Rigidbody2D rb;
     //public Animator animator;
@@ -26,7 +28,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer sr;
 
     Shader shaderGUItext;
-    Shader shaderSpritesDefault;
+    //Shader shaderSpritesDefault;
 
     Vector2 movementDirection;
 
@@ -47,7 +49,7 @@ public class PlayerController : MonoBehaviour
         }
 
         shaderGUItext = Shader.Find("GUI/Text Shader");
-        shaderSpritesDefault = Shader.Find("Sprites/Default");
+        //shaderSpritesDefault = Shader.Find("Sprites/Default");
 
     }
 
@@ -139,6 +141,6 @@ public class PlayerController : MonoBehaviour
 
     void RestoreShader()
     {
-        sr.material.shader = shaderSpritesDefault;
+        sr.material = DefaltMatrial;//shader = shaderSpritesDefault;
     }
 }

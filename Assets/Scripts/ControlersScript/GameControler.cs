@@ -17,7 +17,10 @@ public class GameControler : MonoBehaviour
 
     //efect
     public bool Clairvoyance = false;
-
+    private void ShowIntroduction()
+    {
+        UIController.ShowMesage("Я отправился в путешествие, чтобы одолеть древнее зло, что терзает эти земли\n Но я слаб и беспомощен, а мои враги могучи.Мне нужно скопить сил. Найти больше Артифактов.\n", 10);
+    }
     // Start is called before the first frame update
     void Start()
     {   
@@ -26,7 +29,7 @@ public class GameControler : MonoBehaviour
        UIController = GameObject.FindGameObjectsWithTag("UIController")[0].GetComponent<UIControler>();
        Player = GameObject.FindGameObjectsWithTag("Player")[0];
 
-       UIController.ShowMesage("Игра началась!");
+       ShowIntroduction();
     }
 
     public void ChangeLevel()

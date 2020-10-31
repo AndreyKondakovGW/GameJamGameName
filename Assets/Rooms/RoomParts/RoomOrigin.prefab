@@ -406,7 +406,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -506,11 +506,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e24435110d569643a8af30577c6c338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Probability: 0.5
   Door_U: {fileID: 0}
   Door_B: {fileID: 0}
   Door_R: {fileID: 0}
   Door_L: {fileID: 0}
   Spawns: []
+  rotatable: 1
 --- !u!1 &8890073676524469953
 GameObject:
   m_ObjectHideFlags: 0

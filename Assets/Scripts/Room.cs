@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    public float Probability = 0.5f;
+
     public GameObject Door_U;
     public GameObject Door_B;
     public GameObject Door_R;
@@ -66,5 +68,11 @@ public class Room : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public bool CheckProbability()
+    {
+        float f = Random.Range(0f,1f);
+        return f < Probability;
     }
 }

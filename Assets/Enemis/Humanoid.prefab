@@ -149,18 +149,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c520e2e6611279245b6de317b24759e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   attackDuration: 1
   attackDelay: 0.4
   attackRange: 0.5
   health: 50
   maxHealth: 50
-  damage: 10
+  damage: 5
   chasingTime: 0
   agressive: 1
   rb: {fileID: 0}
   sr: {fileID: 0}
   animator: {fileID: 0}
+  DefaltMatrial: {fileID: 2100000, guid: 599c9ac3f4a40964aa046a97697817fe, type: 2}
 --- !u!50 &1061028180625904330
 Rigidbody2D:
   serializedVersion: 4

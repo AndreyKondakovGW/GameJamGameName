@@ -881,12 +881,13 @@ MonoBehaviour:
   attackRange: 0.5
   health: 200
   maxHealth: 200
-  damage: 50
+  damage: 10
   chasingTime: 0
   agressive: 1
   rb: {fileID: 0}
   sr: {fileID: 0}
   animator: {fileID: 0}
+  DefaltMatrial: {fileID: 2100000, guid: 599c9ac3f4a40964aa046a97697817fe, type: 2}
 --- !u!50 &6561837238674110299
 Rigidbody2D:
   serializedVersion: 4
