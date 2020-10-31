@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Threading;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class Humanoid : Enemy
@@ -15,6 +17,7 @@ public class Humanoid : Enemy
     bool isChasing = false;
     bool isOnWayHome = false;
     bool isDead = false;
+    bool isFlanking = false;
 
     bool[] AttackTriggers;
 
@@ -24,6 +27,10 @@ public class Humanoid : Enemy
     GameObject chasing;
     Transform homePoint;
     MiniHPBar miniHPBar;
+
+    Pathfinder pathfinder;
+
+    LinkedListNode<PathNode> currentNode;
 
     Vector2 movementDirection;
 
@@ -57,6 +64,7 @@ public class Humanoid : Enemy
         shaderSpritesDefault = Shader.Find("Sprites/Default");
 
         AttackTriggers = new bool[4];
+        pathfinder = new Pathfinder();
     }
 
     // Update is called once per frame
@@ -105,6 +113,16 @@ public class Humanoid : Enemy
         }
     }
 
+    void UpdateAnims()
+    {
+        if (movementDirection != Vector2.zero)
+        {
+            animator.SetFloat("Horizontal", movementDirection.x);
+            animator.SetFloat("Vertical", movementDirection.y);
+        }
+        animator.SetFloat("Speed", movementDirection.sqrMagnitude);
+    }
+
     protected override void UpdateAI()
     {
         if (isChasing && !isAttacking)
@@ -127,33 +145,47 @@ public class Humanoid : Enemy
             {
                 diff = new Vector2(diff.x, diff.y * 4);
                 movementDirection = (diff).normalized;
-                if (movementDirection != Vector2.zero)
-                {
-                    animator.SetFloat("Horizontal", movementDirection.x);
-                    animator.SetFloat("Vertical", movementDirection.y);
-                }
-                animator.SetFloat("Speed", movementDirection.magnitude);
+                UpdateAnims();
             }
         }
-        else if (isOnWayHome)
+        else if (isFlanking)
         {
-            Vector2 diff = homePoint.position - transform.position;
+            Vector2 diff = new Vector2(currentNode.Value.pos.x - transform.position.x, currentNode.Value.pos.y - transform.position.y);
             if (diff.sqrMagnitude < 0.1)
             {
-                isOnWayHome = false;
+                if (currentNode.Next == null)
+                {
+                    Invoke("GoHome", 3.0f);
+                }
+                currentNode = currentNode.Next;
                 return;
             }
             movementDirection = diff.normalized / 2;
-            if (movementDirection != Vector2.zero)
+            UpdateAnims();
+        }
+        else if (isOnWayHome)
+        {
+            if (currentNode == null)
             {
-                animator.SetFloat("Horizontal", movementDirection.x);
-                animator.SetFloat("Vertical", movementDirection.y);
+                ArrivedHome();
             }
-            animator.SetFloat("Speed", movementDirection.sqrMagnitude);
+            Vector2 diff = new Vector2(currentNode.Value.pos.x - transform.position.x, currentNode.Value.pos.y - transform.position.y);
+            if (diff.sqrMagnitude < 0.1)
+            {
+                if (currentNode.Next == null)
+                {
+                    ArrivedHome();
+                }
+                currentNode = currentNode.Next;
+                return;
+            }
+            movementDirection = diff.normalized / 2;
+            UpdateAnims();
         }
         else
         {
             movementDirection = Vector2.zero;
+            UpdateAnims();
         }
     }
 
@@ -180,7 +212,7 @@ public class Humanoid : Enemy
     void ObstacleCheck()
     {
         //Debug.Log("OBSTACLE CHECK " + isChasing + " " + chasing.transform.position);
-        if (SeesObstacle())
+        if (SeesObstacle() && !isFlanking)
         { 
             //Debug.Log("WALL " + isChasing);
             GiveUpChasing();
@@ -193,17 +225,61 @@ public class Humanoid : Enemy
         CancelInvoke("ObstacleCheck");
         movementDirection = Vector2.zero;
         animator.SetFloat("Speed", 0.0f);
-        Invoke("GoHome", 3.0f);
+        StartFlanking();
+    }
+
+    LinkedList<PathNode> GetPath(Vector2 pos1, Vector2 pos2)
+    {
+        float new_x = Mathf.Floor(pos1.x) + 0.5f;
+        float new_y = Mathf.Floor(pos1.y) + 0.5f;
+        PathNode start = new PathNode(new Vector2(new_x, new_y));
+        new_x = Mathf.Floor(pos2.x) + 0.5f;
+        new_y = Mathf.Floor(pos2.y) + 0.5f;
+        PathNode end = new PathNode(new Vector2(new_x, new_y));
+        return pathfinder.findPath(start, end);
+    }
+
+    void StartFlanking()
+    {
+
+        LinkedList<PathNode> plist = GetPath(transform.position, chasing.transform.position);
+        //Debug.Log("HERE");
+        if (plist != null && plist.Count != 0)
+        {
+            if (plist.Count > 10)
+            {
+                Invoke("GoHome", 3.0f);
+                return;
+            }
+
+            currentNode = plist.First;
+            isFlanking = true;
+        }
+        else
+        {
+            Invoke("GoHome", 3.0f);
+        }
     }
 
     void GoHome()
     {
-        isOnWayHome = true;
+        isFlanking = false;
+        isChasing = false;
+        animator.SetFloat("Speed", 0.0f);
+        Vector2 dist = homePoint.position - transform.position;
+        if (dist.magnitude < 10)
+        {
+            isOnWayHome = true;
+            LinkedList<PathNode> plist = GetPath(transform.position, homePoint.position);
+            currentNode = plist.First;
+        }
+        
     }
 
     void ArrivedHome()
     {
-
+        isOnWayHome = false;
+        animator.SetFloat("Speed", 0.0f);
     }
 
     void RestoreShader()
@@ -213,14 +289,17 @@ public class Humanoid : Enemy
 
     public override void OnHit(GameObject player, float Damage)
     {
-        health -= Damage;
-        miniHPBar.UpdateHPByRatio(health/maxHealth);
-        sr.material.shader = shaderGUItext;
-        Invoke("RestoreShader", 0.2f);
-        if (health <= 0)
+        if (!isDead)
         {
-            isDead = true;
-            OnDeath();
+            health -= Damage;
+            miniHPBar.UpdateHPByRatio(health / maxHealth);
+            sr.material.shader = shaderGUItext;
+            Invoke("RestoreShader", 0.2f);
+            if (health <= 0)
+            {
+                isDead = true;
+                OnDeath();
+            }
         }
     }
 
@@ -237,7 +316,9 @@ public class Humanoid : Enemy
     void StartChasing(GameObject player)
     {
         isChasing = true;
+        isFlanking = false;
         isOnWayHome = false;
+        CancelInvoke("GoHome");
         InvokeRepeating("ObstacleCheck", 0.0f, 0.5f);
     }
 
@@ -267,7 +348,7 @@ public class Humanoid : Enemy
     public override void OnExitWarningRange(GameObject player)
     {
         //Debug.Log("exited warning");
-        GiveUpChasing();
+        GoHome();
     }
 
     public override void OnExitReactionRange(GameObject player)
