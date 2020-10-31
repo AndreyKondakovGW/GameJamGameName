@@ -47,7 +47,7 @@ public class Humanoid : Enemy
         }
 
         homePoint = gameObject.transform.Find("home_point");
-        Debug.Log(homePoint.name);
+        //Debug.Log(homePoint.name);
         homePoint.parent = null;
     }
 
@@ -108,7 +108,7 @@ public class Humanoid : Enemy
             float magnitude = diff.magnitude;
             if (magnitude < attackRange)
             {
-                Debug.Log("ATTACK" + chasing.transform.position + " " + chasing.name);
+                //Debug.Log("ATTACK" + chasing.transform.position + " " + chasing.name);
                 isAttacking = true;
                 animator.SetBool("Attacking", true);
                 Invoke("AttackPlayer", attackDelay);

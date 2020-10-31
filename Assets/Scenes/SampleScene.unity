@@ -656,7 +656,7 @@ Light:
   m_GameObject: {fileID: 194003827}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 2
+  m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.7169812, g: 0.6058168, b: 0.26041296, a: 1}
   m_Intensity: 1

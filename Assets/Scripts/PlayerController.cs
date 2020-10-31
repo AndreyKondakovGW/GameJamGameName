@@ -13,8 +13,13 @@ public class PlayerController : MonoBehaviour
 
     HashSet<Enemy>[] enemiesInTriggers;
 
+    public Sprite Front;
+    public Sprite Right;
+    public Sprite Left;
+    public Sprite Back;
+
     public Rigidbody2D rb;
-    public Animator animator;
+    //public Animator animator;
     public PlayerStats playerStats;
 
     Vector2 movementDirection;
@@ -39,11 +44,11 @@ public class PlayerController : MonoBehaviour
         if (movementDirection != Vector2.zero)
         {
             direction = AttackDirections.ClosestDirection(movementDirection);
-            Debug.Log(direction + " " + movementDirection);
-            animator.SetFloat("Horizontal", movementDirection.x);
-            animator.SetFloat("Vertical", movementDirection.y);
+            //Debug.Log(direction + " " + movementDirection);
+            //animator.SetFloat("Horizontal", movementDirection.x);
+            //animator.SetFloat("Vertical", movementDirection.y);
         }
-        animator.SetFloat("Speed", movementDirection.sqrMagnitude);
+        //animator.SetFloat("Speed", movementDirection.sqrMagnitude);
         if (Input.GetKeyDown("space"))
         {
             Attack();
@@ -52,6 +57,27 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if ( movementDirection.x > 0)
+        {
+            transform.Find("sprite").GetComponent<SpriteRenderer>().sprite = Right;
+        }
+        else if ( movementDirection.x < 0)
+        {
+            transform.Find("sprite").GetComponent<SpriteRenderer>().sprite = Left;
+        }
+        if ( movementDirection.x == 0)
+        {
+            if ( movementDirection.y > 0 )
+            {
+                transform.Find("sprite").GetComponent<SpriteRenderer>().sprite = Back;
+            }
+            else
+            {
+                transform.Find("sprite").GetComponent<SpriteRenderer>().sprite = Front;
+            }
+            
+        }
+
         rb.velocity = movementDirection * movementSpeed;
     }
 
