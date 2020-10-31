@@ -20,7 +20,7 @@ public class GameControler : MonoBehaviour
     public bool Clairvoyance = false;
     private void ShowIntroduction()
     {
-        UIController.ShowMesage("Я отправился в путешествие, чтобы одолеть древнее зло, что терзает эти земли\n Но я слаб и беспомощен, а мои враги могучи.Мне нужно скопить сил. Найти больше Артифактов.\n", 10);
+        UIController.ShowMesage("Я отправился в путешествие, чтобы одолеть древнее зло, что терзает эти земли. \n Но я слаб и беспомощен, а мои враги могучи. Мне нужно набраться сил. Найти больше Артефактов.\n", 10);
     }
     // Start is called before the first frame update
     void Start()
@@ -51,7 +51,7 @@ public class GameControler : MonoBehaviour
             RoomControler.GetComponent<RoomSectionControler>().CreateSection();
         }
         
-        UIController.ShowMesage("Вы перешли на уровень" + curent_level);
+        UIController.ShowMesage("Вы перешли на уровень " + curent_level);
         if (Clairvoyance)
         {
             foreach (var en in GameObject.FindGameObjectsWithTag("Enemy"))

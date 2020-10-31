@@ -27,6 +27,8 @@ public class Minotaur : Enemy
     Shader shaderGUItext;
     Shader shaderSpritesDefault;
 
+    public Material  DefaltMatrial;
+
     GameObject chasing;
     Transform homePoint;
     MiniHPBar miniHPBar;
@@ -332,7 +334,7 @@ public class Minotaur : Enemy
 
     void RestoreShader()
     {
-        sr.material.shader = shaderSpritesDefault;
+        sr.material = DefaltMatrial;
     }
 
     public override void OnHit(GameObject player, float Damage)
