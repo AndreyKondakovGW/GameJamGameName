@@ -26,7 +26,7 @@ public class GameControler : MonoBehaviour
     public void ChangeLevel()
     {
         curent_level++;
-        Player.transform.position = new Vector3(0,0,0);
+        Player.transform.position = GameObject.FindGameObjectsWithTag("Respawn")[0].transform.position;
         foreach (var r in GameObject.FindGameObjectsWithTag("Room"))
         {
             Destroy(r);

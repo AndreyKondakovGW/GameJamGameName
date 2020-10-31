@@ -8,6 +8,10 @@ public class CharacterTestScript : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    public Sprite Front;
+    public Sprite Right;
+    public Sprite Left;
+
     Vector2 move;
 
     void Update()
@@ -17,7 +21,20 @@ public class CharacterTestScript : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
+    {   
+        if (move.x > 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = Right;
+        }
+        else if (move.x < 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = Left;
+        }
+        if (move.x == 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = Front;
+        }
+        
         rb.MovePosition(rb.position + move * moveSpeed * Time.fixedDeltaTime);
     }
 }

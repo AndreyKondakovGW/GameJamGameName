@@ -21,26 +21,38 @@ public class Room : MonoBehaviour
 
     public void RotateRandomly()
     {
-        int c = Random.Range(0,4);
+        //int c = Random.Range(0,4);
 
-        for (var i = 0; i < c; i++)
-        {
-            transform.Rotate(0,0,-90);
+        //for (var i = 0; i < c; i++)
+        //{
+        //    transform.Rotate(0,0,-90);
 
-            GameObject t = Door_R;
-            Door_R = Door_U;
-            Door_U = Door_L;
-            Door_L = Door_B;
-            Door_B = t;
-        }
+        //    GameObject t = Door_R;
+        //    Door_R = Door_U;
+        //    Door_U = Door_L;
+        //    Door_L = Door_B;
+        //    Door_B = t;
+        //}
     }
 
     public void LockAllDoors()
     {
-        Door_U.SetActive(true);
-        Door_B.SetActive(true);
-        Door_R.SetActive(true);
-        Door_L.SetActive(true);
+        if (Door_U)
+        {
+            Door_U.SetActive(true);
+        }
+        if (Door_B)
+        {
+            Door_B.SetActive(true);
+        }
+        if (Door_R)
+        {
+            Door_R.SetActive(true);
+        }
+        if (Door_L)
+        {
+            Door_L.SetActive(true);
+        }
     }
     // Start is called before the first frame update
     void Start()
