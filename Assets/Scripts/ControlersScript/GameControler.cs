@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameControler : MonoBehaviour
 {
     public int curent_level = 1;
+    public int last_level = 100;
     public float speedfinemodifiee = 0.9f;
     public GameObject RoomControler;
     public UIControler UIController;
@@ -40,7 +41,16 @@ public class GameControler : MonoBehaviour
         {
             Destroy(r);
         }
-        RoomControler.GetComponent<RoomSectionControler>().CreateSection();
+
+        if (curent_level == last_level)
+        {
+            RoomControler.GetComponent<RoomSectionControler>().CreatelastLevel();
+        }
+        else
+        {
+            RoomControler.GetComponent<RoomSectionControler>().CreateSection();
+        }
+        
         UIController.ShowMesage("Вы перешли на уровень" + curent_level);
         if (Clairvoyance)
         {

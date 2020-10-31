@@ -10,6 +10,7 @@ public class RoomSectionControler : MonoBehaviour
     public Room[] RoomPartsPerf;
     public Room[] ExitRoomPerf;
     public Room StartingRoom;
+    public Room LastRoom;
 
 
     private Room[,] RoomsFiled;
@@ -31,6 +32,18 @@ public class RoomSectionControler : MonoBehaviour
             CreateNewRoom();
         }
         CreateEndRoom();
+    }
+
+    public void CreatelastLevel()
+    {
+        RoomsFiled = new Room[field_size,field_size];
+        RoomsFiled[5,5] = StartingRoom;
+        StartingRoom.LockAllDoors();
+        RoomsFiled[5,4] = LastRoom;
+        Room newRoom = Instantiate(LastRoom);
+        newRoom.transform.position = new Vector3(5 - 5, 4 - 5 , 0) * 10;
+        ConnectRoom(StartingRoom, new Vector2Int(5,5));
+        ConnectRoom(LastRoom, new Vector2Int(5,4));
     }
 
     private void CreateNewRoom()

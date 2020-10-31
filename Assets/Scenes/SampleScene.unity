@@ -1326,7 +1326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf99a5d184b6c4eb4a22605b87b802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curent_level: 1
+  curent_level: 99
+  last_level: 100
   speedfinemodifiee: 0.9
   RoomControler: {fileID: 0}
   UIController: {fileID: 0}
@@ -2766,6 +2767,8 @@ MonoBehaviour:
   - {fileID: 50901475472883626, guid: c344d945a5b281845bcba452b71b32fc, type: 3}
   - {fileID: 6558306145499617619, guid: 19299b7438a8f6f47811e640b19d9951, type: 3}
   StartingRoom: {fileID: 367076852}
+  LastRoom: {fileID: 6569689222848458045, guid: 724113f6e348f424b8014485108c3d41,
+    type: 3}
 --- !u!4 &938141590
 Transform:
   m_ObjectHideFlags: 0
@@ -8366,6 +8369,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 599c9ac3f4a40964aa046a97697817fe, type: 2}
+    - target: {fileID: 2181359763012885748, guid: 939fbfc1f9464e947b7a0b12d8bc44e0,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2181359763240037554, guid: 939fbfc1f9464e947b7a0b12d8bc44e0,
         type: 3}
       propertyPath: HB
@@ -8495,7 +8503,7 @@ PrefabInstance:
     - target: {fileID: 6705204782975163699, guid: 939fbfc1f9464e947b7a0b12d8bc44e0,
         type: 3}
       propertyPath: m_Type
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6705204782975163699, guid: 939fbfc1f9464e947b7a0b12d8bc44e0,
         type: 3}

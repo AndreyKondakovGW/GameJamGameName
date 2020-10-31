@@ -3321,22 +3321,22 @@ PrefabInstance:
         type: 3}
       propertyPath: Door_U
       value: 
-      objectReference: {fileID: 5459560965338862531}
+      objectReference: {fileID: 0}
     - target: {fileID: 3675020308357185479, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
         type: 3}
       propertyPath: Door_B
       value: 
-      objectReference: {fileID: 1946606913908962280}
+      objectReference: {fileID: 0}
     - target: {fileID: 3675020308357185479, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
         type: 3}
       propertyPath: Door_R
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1946606913908962280}
     - target: {fileID: 3675020308357185479, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
         type: 3}
       propertyPath: Door_L
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5459560965338862531}
     - target: {fileID: 3675020308357185479, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
         type: 3}
       propertyPath: Spawns.Array.data[0]
@@ -7746,7 +7746,7 @@ PrefabInstance:
     - target: {fileID: 229635571700501104, guid: 518ff31e4a7b37443860141b0b7cbae8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.12
+      value: 3.98
       objectReference: {fileID: 0}
     - target: {fileID: 229635571700501104, guid: 518ff31e4a7b37443860141b0b7cbae8,
         type: 3}
