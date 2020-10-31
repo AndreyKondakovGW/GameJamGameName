@@ -22,6 +22,11 @@ public class PlayerController : MonoBehaviour
     //public Animator animator;
     public PlayerStats playerStats;
 
+    public SpriteRenderer sr;
+
+    Shader shaderGUItext;
+    Shader shaderSpritesDefault;
+
     Vector2 movementDirection;
 
     void Start()
@@ -35,6 +40,14 @@ public class PlayerController : MonoBehaviour
         {
             playerStats = GetComponent<PlayerStats>();
         }
+        if (!sr)
+        {
+            sr = transform.Find("sprite").GetComponent<SpriteRenderer>();
+        }
+
+        shaderGUItext = Shader.Find("GUI/Text Shader");
+        shaderSpritesDefault = Shader.Find("Sprites/Default");
+
     }
 
     void Update()
@@ -108,5 +121,17 @@ public class PlayerController : MonoBehaviour
     public void OnEnemyExitTrigger(Enemy enemy, AttackDirection direction)
     {
         enemiesInTriggers[(int)direction].Remove(enemy);
+    }
+
+    public void OnHit(Enemy enemy, float damage)
+    {
+        playerStats.HP = playerStats.HP - damage;
+        sr.material.shader = shaderGUItext;
+        Invoke("RestoreShader", 0.2f);
+    }
+
+    void RestoreShader()
+    {
+        sr.material.shader = shaderSpritesDefault;
     }
 }
