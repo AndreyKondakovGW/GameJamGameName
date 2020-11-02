@@ -7348,6 +7348,16 @@ PrefabInstance:
       propertyPath: RestorationperEnemy
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2181359763240037554, guid: 939fbfc1f9464e947b7a0b12d8bc44e0,
+        type: 3}
+      propertyPath: Agility
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181359763240037554, guid: 939fbfc1f9464e947b7a0b12d8bc44e0,
+        type: 3}
+      propertyPath: Srength
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2181359763240037576, guid: 939fbfc1f9464e947b7a0b12d8bc44e0,
         type: 3}
       propertyPath: movementSpeed

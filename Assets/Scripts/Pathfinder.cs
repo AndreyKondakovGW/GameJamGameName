@@ -44,7 +44,12 @@ public class Pathfinder
     bool IsNodeWalkable(PathNode node, PathNode node2)
     {
         RaycastHit2D[] result = Physics2D.LinecastAll(node.pos, node2.pos);
-        return !result.Any(x => x.transform.tag == "Walls");
+        /*foreach (RaycastHit2D rc in result)
+        {
+            Debug.Log(((rc.collider.isTrigger == false) && (rc.transform.tag != "Enemy") && (rc.transform.tag != "player")) + " " + rc.transform.tag);
+        }*/
+        
+        return !result.Any(x => ((x.collider.isTrigger == false) && (x.transform.tag != "Enemy") && (x.transform.tag != "player")));
     }
 
     HashSet<PathNode> GetNeighbourNodes(PathNode node)
@@ -89,6 +94,10 @@ public class Pathfinder
             openSet.Remove(currentNode);
             closedSet.Add(currentNode);
             closedCoords.Add(new Vector2(currentNode.pos.x, currentNode.pos.y));
+            if (closedCoords.Count > 50)
+            {
+                return null;
+            }
             if ((currentNode.pos.x == endNode.pos.x) && (currentNode.pos.y == endNode.pos.y))
             {
                 while (currentNode != startNode)

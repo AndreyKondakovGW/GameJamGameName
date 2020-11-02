@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.036285877}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 1, y: 0.7056217}
   m_EdgeRadius: 0
 --- !u!114 &2181359762823446238
 MonoBehaviour:
@@ -162,7 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2181359763012885755}
   - component: {fileID: 2181359763012885748}
-  - component: {fileID: 2181359763012885749}
+  - component: {fileID: 5278748135432917105}
   m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
@@ -234,7 +234,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2181359763012885749
+--- !u!95 &5278748135432917105
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -242,9 +242,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2181359763012885750}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 46d2a24c75a40f7419b9462282a3e212, type: 2}
+  m_Controller: {fileID: 9100000, guid: d401fa772c0ebf942b37c856215f1766, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -335,6 +335,7 @@ MonoBehaviour:
   Right: {fileID: 21300000, guid: b411fbef0a1ce8a4683739082b0cc9d8, type: 3}
   Left: {fileID: 21300000, guid: aea64e1a8c370154280944087bf010eb, type: 3}
   Back: {fileID: 21300000, guid: ca467948e6dd95240a9495f35f9a2719, type: 3}
+  DefaltMatrial: {fileID: 0}
   rb: {fileID: 2181359763240037583}
   playerStats: {fileID: 0}
   sr: {fileID: 0}
@@ -372,6 +373,8 @@ MonoBehaviour:
   Endurance: 0
   Agility: 0
   Damage: 0
+  Regeneration: 0
+  RestorationperEnemy: 5
   HB: {fileID: 0}
 --- !u!114 &5241879124864574827
 MonoBehaviour:
@@ -397,8 +400,7 @@ AudioSource:
   m_GameObject: {fileID: 2181359763240037577}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -8208014592391056953, guid: b20abea52007b75448e126c0352bab44,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f7905b5db4bb42942bde284c1548cf61, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -530,7 +532,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0030234456, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -541,7 +543,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 0.7358278, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &2181359763660378344
 MonoBehaviour:
@@ -601,7 +603,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.018140674, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -612,7 +614,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 0.7418747, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &2181359763899235333
 MonoBehaviour:
@@ -672,7 +674,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.012095213}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -683,7 +685,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 1, y: 0.6814313}
   m_EdgeRadius: 0
 --- !u!114 &2181359764313128910
 MonoBehaviour:
@@ -803,6 +805,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d45fecfccbfd0f43a939812a2204a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 6705204782975163699}
   defalt: 0
   delta: 0

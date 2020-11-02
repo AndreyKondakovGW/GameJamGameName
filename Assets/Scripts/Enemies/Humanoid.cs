@@ -151,17 +151,27 @@ public class Humanoid : Enemy
         }
         else if (isFlanking)
         {
+            if (currentNode == null)
+            {
+                //Invoke("GoHome", 3.0f);
+                Debug.Log("Flank Again");
+                StartFlanking();
+                
+                return;
+            }
             Vector2 diff = new Vector2(currentNode.Value.pos.x - transform.position.x, currentNode.Value.pos.y - transform.position.y);
             if (diff.sqrMagnitude < 0.1)
             {
                 if (currentNode.Next == null)
                 {
-                    Invoke("GoHome", 3.0f);
+                    //Invoke("GoHome", 3.0f);
+                    Debug.Log("Flank Again");
+                    StartFlanking();
                 }
                 currentNode = currentNode.Next;
                 return;
             }
-            movementDirection = diff.normalized / 2;
+            movementDirection = diff.normalized;
             UpdateAnims();
         }
         else if (isOnWayHome)
@@ -194,7 +204,12 @@ public class Humanoid : Enemy
     bool SeesObstacle()
     {
         RaycastHit2D[] result = Physics2D.LinecastAll(chasing.transform.position, transform.position);
-        return result.Any(x => x.transform.tag == "Walls");
+        //return result.Any(x => x.transform.tag == "Walls");
+        /*foreach (RaycastHit2D rc in result)
+        {
+            Debug.Log(((rc.collider.isTrigger == false) && (rc.transform.tag != "Enemy") && (rc.transform.tag != "Player")) + " " + rc.transform.tag + " " + rc.transform.name);
+        }*/
+        return result.Any(x => ((x.collider.isTrigger == false) && (x.transform.tag != "Enemy") && (x.transform.tag != "Player")));
     }
 
     void ResetAttacking()
@@ -248,7 +263,7 @@ public class Humanoid : Enemy
         //Debug.Log("HERE");
         if (plist != null && plist.Count != 0)
         {
-            if (plist.Count > 10)
+            if (plist.Count > 25)
             {
                 Invoke("GoHome", 3.0f);
                 return;
@@ -273,7 +288,10 @@ public class Humanoid : Enemy
         {
             isOnWayHome = true;
             LinkedList<PathNode> plist = GetPath(transform.position, homePoint.position);
-            currentNode = plist.First;
+            if (plist != null)
+            {
+                currentNode = plist.First;
+            }
         }
         
     }
@@ -313,7 +331,9 @@ public class Humanoid : Enemy
     {
         GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerStats>().RestoreHP(GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerStats>().RestorationperEnemy);
         CancelInvoke("ObstacleCheck");
+        CancelInvoke("GoHome");
         animator.SetBool("Dead", true);
+        rb.velocity = Vector2.zero;
 
     }
 
@@ -328,22 +348,29 @@ public class Humanoid : Enemy
 
     public override void OnEnterWarningRange(GameObject player)
     {
+        if (!isDead)
+        {
+
+        }
         //Debug.Log("entered warning");
     }
     public override void OnEnterReactionRange(GameObject player)
     {
-        //Debug.Log("entered reaction");
-        chasing = player;
-        if (!SeesObstacle())
+        if (!isDead)
         {
-            //Debug.Log("start chasing");
-            StartChasing(player);
+            //Debug.Log("entered reaction");
+            chasing = player;
+            if (!SeesObstacle())
+            {
+                //Debug.Log("start chasing");
+                StartChasing(player);
+            }
         }
     }
 
     public override void OnStayReactionRange(GameObject player)
     {
-        if (!isChasing && !SeesObstacle())
+        if (!isDead && !isChasing && !SeesObstacle())
         {
             StartChasing(player);
         }
@@ -351,8 +378,10 @@ public class Humanoid : Enemy
 
     public override void OnExitWarningRange(GameObject player)
     {
-        //Debug.Log("exited warning");
-        GoHome();
+        if (!isDead)
+        {
+            GoHome();
+        }
     }
 
     public override void OnExitReactionRange(GameObject player)
@@ -362,11 +391,17 @@ public class Humanoid : Enemy
 
     public override void OnEnterAttackTrigger(AttackDirection playerDirection)
     {
-        AttackTriggers[(int)playerDirection] = true;
+        if (!isDead)
+        {
+            AttackTriggers[(int)playerDirection] = true;
+        }
     }
 
     public override void OnExitAttackTrigger(AttackDirection playerDirection)
     {
-        AttackTriggers[(int)playerDirection] = false;
+        if (!isDead)
+        {
+            AttackTriggers[(int)playerDirection] = false;
+        }
     }
 }

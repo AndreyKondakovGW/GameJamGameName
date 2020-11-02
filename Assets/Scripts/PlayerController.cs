@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     Shader shaderGUItext;
     //Shader shaderSpritesDefault;
 
+    public Animator animator;
+
     Vector2 movementDirection;
 
     void Start()
@@ -47,6 +49,10 @@ public class PlayerController : MonoBehaviour
         {
             sr = transform.Find("sprite").GetComponent<SpriteRenderer>();
         }
+        if (!animator)
+        {
+            animator = transform.Find("sprite").GetComponent<Animator>();
+        }
 
         shaderGUItext = Shader.Find("GUI/Text Shader");
         //shaderSpritesDefault = Shader.Find("Sprites/Default");
@@ -62,8 +68,8 @@ public class PlayerController : MonoBehaviour
             direction = AttackDirections.ClosestDirection(movementDirection);
             //Debug.Log(direction + " " + movementDirection);
 
-            //animator.SetFloat("Horizontal", movementDirection.x);
-            //animator.SetFloat("Vertical", movementDirection.y);
+            animator.SetFloat("Horizontal", movementDirection.x);
+            animator.SetFloat("Vertical", movementDirection.y);
         }
         //animator.SetFloat("Speed", movementDirection.sqrMagnitude);
         if (Input.GetKeyDown("space"))
@@ -74,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if ( movementDirection.x > 0)
+        /*if ( movementDirection.x > 0)
         {
             transform.Find("sprite").GetComponent<SpriteRenderer>().sprite = Right;
         }
@@ -93,7 +99,7 @@ public class PlayerController : MonoBehaviour
                 transform.Find("sprite").GetComponent<SpriteRenderer>().sprite = Front;
             }
             
-        }
+        }*/
 
         rb.velocity = movementDirection * movementSpeed;
     }

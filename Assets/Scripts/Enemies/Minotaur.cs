@@ -221,7 +221,8 @@ public class Minotaur : Enemy
     bool SeesObstacle()
     {
         RaycastHit2D[] result = Physics2D.LinecastAll(chasing.transform.position, transform.position);
-        return result.Any(x => x.transform.tag == "Walls");
+        //return result.Any(x => x.transform.tag == "Walls");
+        return result.Any(x => ((x.collider.isTrigger == false) && (x.transform.tag != "Enemy") && (x.transform.tag != "Player")));
     }
 
     void ResetAttacking()
@@ -362,6 +363,11 @@ public class Minotaur : Enemy
         GameObject.FindGameObjectsWithTag("UIController")[0].GetComponent<UIControler>().ShowMesage("Босс Подземелья мертв. Вы победили!");
         CancelInvoke("ObstacleCheck");
         animator.SetBool("Dead", true);
+        Invoke("EndGame", 8.0f);
+    }
+
+    void EndGame()
+    {
         SceneManager.LoadScene("MainMenu");
     }
 
