@@ -70,11 +70,10 @@ public class RoomSectionControler : MonoBehaviour
             room_num = Random.Range(0, RoomPartsPerf.Length);
         }
         Room newRoom = Instantiate(RoomPartsPerf[room_num]);
-        int limit = 100;
+        int limit = 10;
 
         while (limit-- > 0)
         {
-            
             Vector2Int pos = vacantPlaces.ElementAt(Random.Range(0, vacantPlaces.Count));
             if (newRoom.rotatable)
             {
@@ -90,12 +89,13 @@ public class RoomSectionControler : MonoBehaviour
                 return;
             } 
         }
-        Destroy(newRoom);
-        
+        Destroy(newRoom.gameObject);
+        return;
     }
 
     private bool ConnectRoom(Room room, Vector2Int p)
     {
+        int connectCount;
         List<Vector2Int> neighbors = new List<Vector2Int>();
         if (room.Door_U != null && p.y < field_size - 1 && RoomsFiled[p.x , p.y + 1]?.Door_B != null) neighbors.Add(Vector2Int.up);
         if (room.Door_B != null && p.y > 0 && RoomsFiled[p.x , p.y - 1]?.Door_U != null) neighbors.Add(Vector2Int.down);
@@ -104,10 +104,37 @@ public class RoomSectionControler : MonoBehaviour
         if (room.Door_L != null && p.x > 0 && RoomsFiled[p.x - 1 , p.y]?.Door_R != null) neighbors.Add(Vector2Int.left);
 
         if (neighbors.Count == 0) return false;
+        int DoorCount = 0;
+        if (room.Door_U != null) DoorCount++;
+        if (room.Door_B != null) DoorCount++;
+        if (room.Door_R!= null) DoorCount++;
+        if (room.Door_L!= null) DoorCount++;
+        if (DoorCount == 2)
+        {
+            if (neighbors.Count < 2) return false;
+            if (room.Door_U != null && p.y < field_size - 1 && RoomsFiled[p.x , p.y + 1]?.Door_B != null) Connect(Vector2Int.up,room,p);
+            if (room.Door_B != null && p.y > 0 && RoomsFiled[p.x , p.y - 1]?.Door_U != null) Connect(Vector2Int.down,room,p);
 
-        Vector2Int selectenDirection = neighbors[Random.Range(0, neighbors.Count)];
+            if (room.Door_R != null && p.x < field_size - 1 && RoomsFiled[p.x + 1 , p.y]?.Door_L != null) Connect(Vector2Int.right,room,p);
+            if (room.Door_L != null && p.x > 0 && RoomsFiled[p.x - 1 , p.y]?.Door_R != null) Connect(Vector2Int.left,room,p);
+        }
+        else
+        {
+            connectCount = Random.Range(1, neighbors.Count);
+            for (int i=0;i<connectCount;i++)
+            {
+                Vector2Int selectenDirection = neighbors[Random.Range(0, neighbors.Count)];
+                Connect(selectenDirection,room,p);
+            }
+        } 
+        
 
-        Room selectedRoom = RoomsFiled[p.x + selectenDirection.x, p.y + selectenDirection.y];
+        return true;
+    }
+
+    private void Connect(Vector2Int selectenDirection,Room room,Vector2Int room_p)
+    {
+        Room selectedRoom = RoomsFiled[room_p.x + selectenDirection.x, room_p.y + selectenDirection.y];
 
         if (selectenDirection == Vector2Int.up)
         {
@@ -129,8 +156,6 @@ public class RoomSectionControler : MonoBehaviour
             room.Door_L.SetActive(false);
             selectedRoom.Door_R.SetActive(false);
         }
-
-        return true;
     }
 
     private void CreateEndRoom()

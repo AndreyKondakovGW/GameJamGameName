@@ -14768,6 +14768,11 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[431].second.m_AllTileFlags
       value: 1073741825
       objectReference: {fileID: 0}
+    - target: {fileID: 1652175034918426217, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
+        type: 3}
+      propertyPath: m_TagString
+      value: Walls
+      objectReference: {fileID: 0}
     - target: {fileID: 3478189958163490219, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
         type: 3}
       propertyPath: m_LocalPosition.x

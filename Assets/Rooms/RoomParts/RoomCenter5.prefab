@@ -2158,7 +2158,7 @@ GameObject:
   - component: {fileID: 4352112882973077772}
   m_Layer: 0
   m_Name: RoomCenter5
-  m_TagString: Room
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2360,6 +2360,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Create
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928852008524469158, guid: aecd88907be0a1a458d79a255c89e806,
+        type: 3}
+      propertyPath: m_TagString
+      value: Walls
       objectReference: {fileID: 0}
     - target: {fileID: 4177016664326504490, guid: aecd88907be0a1a458d79a255c89e806,
         type: 3}
@@ -2728,6 +2733,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Create
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928852008524469158, guid: aecd88907be0a1a458d79a255c89e806,
+        type: 3}
+      propertyPath: m_TagString
+      value: Walls
       objectReference: {fileID: 0}
     - target: {fileID: 3323021190676061996, guid: aecd88907be0a1a458d79a255c89e806,
         type: 3}

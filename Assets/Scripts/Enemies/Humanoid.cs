@@ -311,8 +311,10 @@ public class Humanoid : Enemy
     }
     protected override void OnDeath()
     {
+        GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerStats>().RestoreHP(GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerStats>().RestorationperEnemy);
         CancelInvoke("ObstacleCheck");
         animator.SetBool("Dead", true);
+
     }
 
     void StartChasing(GameObject player)

@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
     public float Agility = 0f;
     public float Damage = 10f;
     public float Regeneration = 0f;
+    public float RestorationperEnemy = 5f;
 
     public UIHealthBar HB;
     void Start()
@@ -19,14 +20,19 @@ public class PlayerStats : MonoBehaviour
         StartCoroutine(CountRegen());
     }
 
+    public void RestoreHP(float delta)
+    {
+        HP = HP + delta;
+        if (HP > maxHP)
+        {
+            HP = maxHP;
+        }
+    }
+
     IEnumerator CountRegen()
     {
         while (true)
         {
-            if (HP > maxHP)
-            {
-                HP = maxHP;
-            }
             HP += Regeneration;
             if (HP > maxHP)
             {
