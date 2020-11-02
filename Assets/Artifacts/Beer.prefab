@@ -50,7 +50,7 @@ MonoBehaviour:
   defalt_Probability: 0.5
   Object: {fileID: 0}
   Name: "\u041F\u0438\u0432\u043E"
-  Description: "\u042D\u0444\u0444\u0435\u043A\u0442 : +5\u0445\u043F +5% \u0441\u0438\u043B\u044B"
+  Description: "\u042D\u0444\u0444\u0435\u043A\u0442 : +20\u0445\u043F +5% \u0441\u0438\u043B\u044B"
   efect:
   - {fileID: 5272885759402577983}
   - {fileID: 5272885759402577980}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4acbf1ef6a547468374a576d89c627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delta: 5
+  delta: 20
   is_procentag: 0
 --- !u!114 &5272885759402577980
 MonoBehaviour:

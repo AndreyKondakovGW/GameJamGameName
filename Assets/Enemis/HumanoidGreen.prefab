@@ -879,9 +879,9 @@ MonoBehaviour:
   attackDuration: 1
   attackDelay: 0.4
   attackRange: 0.5
-  health: 200
-  maxHealth: 200
-  damage: 10
+  health: 100
+  maxHealth: 100
+  damage: 20
   chasingTime: 0
   agressive: 1
   rb: {fileID: 0}

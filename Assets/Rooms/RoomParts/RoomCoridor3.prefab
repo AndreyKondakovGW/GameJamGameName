@@ -3357,6 +3357,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1892338712046494603, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3478189958163490219, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3391,6 +3396,11 @@ PrefabInstance:
         type: 3}
       propertyPath: rotatable
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016849797547080969, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4371977497547873335, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
         type: 3}
@@ -4248,6 +4258,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Tiles.Array.data[35].second.m_AllTileFlags
       value: 1073741825
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350440225869699062, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6825682251211733113, guid: 856c23cac4c05d84ab5d8dfeeaa70a18,
         type: 3}

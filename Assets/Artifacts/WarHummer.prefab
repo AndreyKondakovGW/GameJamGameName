@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e5f886f6c0dcc4687be220fd030e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 40
+  level: 10
   max_Probability: 0.75
   defalt_Probability: 0.3
   Object: {fileID: 0}

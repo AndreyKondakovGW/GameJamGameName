@@ -849,8 +849,8 @@ MonoBehaviour:
   attackDuration: 1
   attackDelay: 0.4
   attackRange: 1
-  health: 100
-  maxHealth: 100
+  health: 50
+  maxHealth: 50
   damage: 10
   chasingTime: 0
   agressive: 1
@@ -933,9 +933,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4558b1048c6eedf40b39c97f0fd83f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 15
+  level: 20
   max_Probability: 0.75
-  defalt_Probability: 0.25
+  defalt_Probability: 0.1
   Object: {fileID: 8328789060692128937}
 --- !u!1 &8328789060750614616
 GameObject:

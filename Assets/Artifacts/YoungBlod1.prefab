@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e5f886f6c0dcc4687be220fd030e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 7
+  level: 5
   max_Probability: 0.75
   defalt_Probability: 0.5
   Object: {fileID: 0}
   Name: "\u042E\u043D\u0430\u044F \u041A\u0440\u043E\u0432\u044C(\u0423\u0440.1)"
-  Description: "\u042D\u0444\u0444\u0435\u043A\u0442 + 20 \u0445\u043F"
+  Description: "\u042D\u0444\u0444\u0435\u043A\u0442 + 50 \u0445\u043F"
   efect:
   - {fileID: 3531839222115579249}
   Image: {fileID: 21300000, guid: 1e457d5989e8c3a40a07cccd5690ab20, type: 3}
@@ -65,5 +65,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4acbf1ef6a547468374a576d89c627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delta: 20
+  delta: 50
   is_procentag: 0

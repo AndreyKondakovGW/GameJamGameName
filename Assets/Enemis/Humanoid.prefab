@@ -239,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 3
   max_Probability: 0.75
-  defalt_Probability: 0.5
+  defalt_Probability: 0.7
   Object: {fileID: 1061028180625904324}
 --- !u!1 &1061028180684916277
 GameObject:
